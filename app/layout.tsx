@@ -1,8 +1,12 @@
+import { ClerkProvider,SignIn } from '@clerk/nextjs'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { ClerkProvider, SignIn, SignedIn, SignedOut } from '@clerk/nextjs'
-import Navbar from '@/components/Navbar'
+import { Outfit } from 'next/font/google'
+import { SignedIn } from '@clerk/nextjs/app-beta'
+import { SignedOut } from '@clerk/nextjs/app-beta/client'
+import NavBar from '@/components/Navbar'
+
+const inter = Outfit({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,16 +21,17 @@ export default function RootLayout({
   return (
     <ClerkProvider>
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <SignedIn>
-          <Navbar/> 
-        {children}
+          <NavBar/>
+         {children}
         </SignedIn>
         <SignedOut>
           <SignIn/>
         </SignedOut>
+        
         </body>
     </html>
-  </ClerkProvider>
+    </ClerkProvider>
   )
 }
