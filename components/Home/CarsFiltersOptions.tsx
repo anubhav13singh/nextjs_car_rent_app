@@ -11,6 +11,7 @@ function CarsFiltersOption({carsList,setBrand,orderCarList}:any) {
       filterCarList();
     }
   },[carsList])
+  
   const filterCarList=()=>{
     carsList.forEach((element:any) => {
       BrandSet.add(element.carBrand);
